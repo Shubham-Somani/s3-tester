@@ -117,7 +117,7 @@ export default defineComponent({
     return {
       bucketDetail: true,
       listObject: ref({
-        bucket: 'dev-zabbit',
+        bucket: '',
         path: ''
       }),
       pathArray: ref(pathArray),
@@ -158,7 +158,6 @@ export default defineComponent({
       this.listObject.path = path
       this.pathArray = path.slice(0, path.length - 1).split('/')
       this.getObjectList()
-      console.log('this.pathArray --->', this.pathArray)
     },
     getObjectList(searchVal = '') {
       this.$q.loading.show()

@@ -8,14 +8,15 @@
       animated
     >
       <q-step
+        class="q-pl-xs"
         :name="1"
-        title="Select Configuration"
+        title="Select Credential Type"
         icon="settings"
         :done="step > 1"
       >
         <q-form>
           <div class="text-left form-data col-lg-12 col-md-12 col-sm-12 col-xs-12 q-py-xs">
-            <p class="input-label q-my-xs">Region
+            <p class="input-label q-my-xs">Credential Type
               <span class="text-red">*</span>
             </p>
             <q-select
@@ -44,6 +45,7 @@
         </q-form>
       </q-step>
       <q-step
+        class="q-pl-xs"
         :name="2"
         title="Set Configuration"
         icon="create_new_folder"
@@ -110,7 +112,9 @@
 <script lang="ts">
 import { defineComponent, ref } from '@vue/composition-api';
 import Regions from 'src/helpers/regions';
-import { Region } from 'src/models/model'
+import { Region, S3Config } from 'src/models/model';
+import { mapGetters } from 'vuex';
+
 export default defineComponent({
   name: 'ConfigurationComponent',
   setup() {
@@ -121,10 +125,10 @@ export default defineComponent({
           label: 'Cognito Identiy',
           value: 1
         },
-        {
-          label: 'Access Key',
-          value: 2
-        }
+        // {
+        //   label: 'Access Key',
+        //   value: 2
+        // }
       ],
       type: ref({
         label: 'Cognito Identiy',
@@ -132,14 +136,22 @@ export default defineComponent({
       }),
       congnitoConfig: ref({
         region: {
-          label: 'Europe (Ireland) eu-west-1',
-          value: 'eu-west-1',
+          label: '',
+          value: '',
         },
-        identityPoolId: '44c50147-c1e0-400a-b221-5b3147b768e8'
+        identityPoolId: ''
       }),
       regions: ref(Regions),
       regionsFilter: ref(Regions),
     }
+  },
+  computed: {
+    ...mapGetters({
+      congnitoCreds: 's3Store/getS3InitParams'
+    })
+  },
+  created() {
+    this.congnitoConfig = { ...this.congnitoCreds } as S3Config
   },
   methods: {
     selectRules (val: Region) {

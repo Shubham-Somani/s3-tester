@@ -69,8 +69,8 @@ export default defineComponent({
   setup() {
     return {
       getURLObjectForm: ref({
-        bucket: 'pwazabbit',
-        key: 'icons/icon-512x512.png'
+        bucket: '',
+        key: ''
       }),
       presignedUrl: ''
     }

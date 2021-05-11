@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-list separator>
+    <q-list v-if="bucketList.length > 0" separator>
       <q-input
         dense
         input-class="text-standout-input"
@@ -35,6 +35,14 @@
         </q-item-section>
       </q-item>
     </q-list>
+    <div v-else>
+      <q-card flat class="q-pt-lg full-width no-border-radius">
+        <q-card-section class="full-width text-center">
+          <q-img :basic="true" width="150px" src="~/assets/file.svg"/>
+          <p class="no-margin q-pt-lg">No buckets found</p>
+        </q-card-section>
+      </q-card>
+    </div>
   </div>
 </template>
 

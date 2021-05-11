@@ -31,7 +31,8 @@
 import { defineComponent } from '@vue/composition-api';
 import OperationComponent from 'src/components/OperationComponent.vue';
 import ConfigurationComponent from 'src/components/ConfigurationComponent.vue';
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
+
 export default defineComponent({
   name: 'Home',
   components: { 

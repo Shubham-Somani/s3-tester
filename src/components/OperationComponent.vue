@@ -43,8 +43,8 @@
 import { defineComponent } from '@vue/composition-api';
 import { Operations } from 'src/helpers/operations';
 import Constants from 'src/helpers/constatns'
-import BucketOperationComponent from './s3-operations/bucketOperationComponent.vue';
-import ObjectOperationComponent from './s3-operations/objectOperationComponent.vue';
+import BucketOperationComponent from './s3-operations/BucketOperationComponent.vue';
+import ObjectOperationComponent from './s3-operations/ObjectOperationComponent.vue';
 
 export default defineComponent({
   components: {

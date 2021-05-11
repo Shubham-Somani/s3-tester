@@ -122,8 +122,8 @@ export default defineComponent({
     ]
     return {
       getPutURLObjectForm: ref({
-        bucket: 'pwazabbit',
-        key: 'icons/icon-512x512.png',
+        bucket: '',
+        key: '',
         acl: 'private',
         file: null
       }),
