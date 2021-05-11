@@ -1,0 +1,31 @@
+.text-standout-input {
+  color: #525f7f!important;
+}
+
+.q-field--standout.q-field--highlighted .q-field__control {
+  background: rgba(0, 0, 0, 0.05)!important;
+}
+
+.input-label {
+  font-size: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #8898aa !important;
+}
+
+.q-field--standout.q-field--highlighted .q-field__native, .q-field--standout.q-field--highlighted .q-field__prefix, .q-field--standout.q-field--highlighted .q-field__suffix, .q-field--standout.q-field--highlighted .q-field__prepend, .q-field--standout.q-field--highlighted .q-field__append, .q-field--standout.q-field--highlighted .q-field__input {
+  color: #525f7f!important;
+}
+
+.readonly-wrapper {
+  padding-bottom: 28px;
+}
+
+.readonly-input {
+  background: #ebecf1!important;
+  padding: 0 12px;
+  border-radius: 4px;
+}

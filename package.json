@@ -1,0 +1,54 @@
+{
+  "name": "s3-tester",
+  "version": "0.0.1",
+  "description": "Test your s3 services here",
+  "productName": "S3 Tester",
+  "author": "Shubham Somani",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.ts,.vue ./",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity": "^3.14.0",
+    "@aws-sdk/client-s3": "^3.14.0",
+    "@aws-sdk/credential-provider-cognito-identity": "^3.14.0",
+    "@aws-sdk/s3-request-presigner": "^3.14.0",
+    "@aws-sdk/smithy-client": "^3.13.1",
+    "@aws-sdk/types": "^3.13.1",
+    "@quasar/extras": "^1.0.0",
+    "@vue/composition-api": "^1.0.0-rc.3",
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "quasar": "^1.0.0",
+    "vuex-persistedstate": "^4.0.0-beta.3"
+  },
+  "devDependencies": {
+    "@quasar/app": "^2.0.0",
+    "@types/node": "^10.17.15",
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-vue": "^7.7.0",
+    "workbox-webpack-plugin": "^5.1.4"
+  },
+  "browserslist": [
+    "ie >= 11",
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

@@ -1,0 +1,10 @@
+// app global css in SCSS form
+@import 'input';
+
+.display-inline-block {
+  display: inline-block!important;
+}
+
+.line-break {
+  line-break: anywhere;
+}
