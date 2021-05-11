@@ -31,7 +31,7 @@
             <bucket-operation-component />
           </div>
           <div v-if="operation.value === constants.OBJECT_OPERATIONS" class="text-h6">
-            <object-operation-component />
+            <object-operations-component />
           </div>
         </q-tab-panel>
       </q-tab-panels>
@@ -44,12 +44,12 @@ import { defineComponent } from '@vue/composition-api';
 import { Operations } from 'src/helpers/operations';
 import Constants from 'src/helpers/constatns'
 import BucketOperationComponent from './s3-operations/BucketOperationComponent.vue';
-import ObjectOperationComponent from './s3-operations/ObjectOperationComponent.vue';
+import ObjectOperationsComponent from './s3-operations/ObjectOperationsComponent.vue';
 
 export default defineComponent({
   components: {
     BucketOperationComponent,
-    ObjectOperationComponent
+    ObjectOperationsComponent
   },
   name: 'OperationComponent',
   setup() {

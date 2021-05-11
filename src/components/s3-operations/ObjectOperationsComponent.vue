@@ -44,13 +44,13 @@ import { defineComponent } from '@vue/composition-api';
 import { ObjectOperations } from 'src/helpers/operations';
 import Constants from 'src/helpers/constatns';
 import ListObjectComponent from './object/ListObjectComponent.vue';
-import GetObjectComponent from './object/getObjectComponent.vue';
+import GetObjectComponent from './object/GetObjectComponent.vue';
 import GetObjectPresignedUrlComponent from './object/GetObjectPresignedUrlComponent.vue';
 import PutObjectPresignedUrlComponent from './object/PutObjectPresignedUrlComponent.vue';
 import UploadObjectComponent from './object/UploadObjectComponent.vue';
 
 export default defineComponent({
-  name: 'ObjectOperationComponent',
+  name: 'ObjectOperationsComponent',
   components: {
     ListObjectComponent,
     GetObjectComponent,
