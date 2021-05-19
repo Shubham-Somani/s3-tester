@@ -4,12 +4,13 @@ import { ActionTree } from 'vuex';
 import { StateInterface } from '../index';
 import { S3StateInterface } from './state';
 import axios from 'axios'
+import { S3Config } from 'src/models/model';
 
 const apiUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.s3explorer.in'
 
 const actions: ActionTree<S3StateInterface, StateInterface> = {
-  initialiseS3 (context, payload: { data: { region: { value: string }, identityPoolId: string } }) {
-    context.commit('INIT_S3', payload.data)
+  initialiseS3 (context, payload: { data: S3Config, type: number }) {
+    context.commit('INIT_S3', { data: payload.data, type: payload.type })
     return true
   },
   async listBuckets (context) {
@@ -54,8 +55,8 @@ const actions: ActionTree<S3StateInterface, StateInterface> = {
   },
   async deleteObject (context, payload: { bucket: string, key: string }) {
     return new Promise((resolve, reject) => {
-      axios({ url: `${apiUrl}/api/v1/object/${payload.bucket}`, data: { path: payload.key }, headers: context.state.headerParams, method: 'DELETE' })
-        .then((resp: { data: { data: unknown } }) => {
+      axios({ url: `${apiUrl}/api/v1/objects/${payload.bucket}`, data: { path: payload.key }, headers: context.state.headerParams, method: 'DELETE' })
+        .then((resp) => {
           resolve(resp.data)
         }).catch((err: { response: { data: { message: string } } }) => {
           reject(err.response.data.message)

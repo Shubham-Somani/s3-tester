@@ -10,7 +10,9 @@ export interface Region {
 
 export interface S3Config {
   region: SelectTag,
-  identityPoolId: string
+  identityPoolId: string,
+  accessKeyId: string,
+  secretAccessKey: string,
 }
 
 export interface GetObject {

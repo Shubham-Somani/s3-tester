@@ -31,7 +31,7 @@
           <q-btn
             type="submit"
             color="secondary"
-            label="List Bucket"
+            label="List Objects"
           />
         </div>
       </q-form>

@@ -30,10 +30,10 @@ const ObjectOperations: Array<SelectTag> = [
     label: 'Get Object',
     value: Constants.GET_OBJECT
   },
-  // {
-  //   label: 'Delete Object',
-  //   value: Constants.DELETE_OBJECT
-  // },
+  {
+    label: 'Delete Object',
+    value: Constants.DELETE_OBJECT
+  },
   {
     label: 'Generate Get Presigned URL',
     value: Constants.GENERATE_GET_PRESIGNED_URL

@@ -1,15 +1,22 @@
+import { S3Config } from 'src/models/model';
 import { MutationTree } from 'vuex';
 import { S3StateInterface } from './state';
 
 const mutation: MutationTree<S3StateInterface> = {
-  INIT_S3 (state: S3StateInterface, payload: { region: { value: string, label: string }, identityPoolId: string }) {
+  INIT_S3 (state: S3StateInterface, payload: { type: { label: string, value: number }, data: S3Config }) {
+    state.type = payload.type
     state.initParams = {
-      region: payload.region,
-      identityPoolId: payload.identityPoolId
+      region: payload.data.region,
+      identityPoolId: payload.data.identityPoolId,
+      accessKeyId: payload.data.accessKeyId,
+      secretAccessKey: payload.data.secretAccessKey
     }
     const params = JSON.stringify({
-      region: payload.region.value,
-      identityPoolId: payload.identityPoolId
+      region: payload.data.region.value,
+      identityPoolId: payload.data.identityPoolId,
+      accessKeyId: payload.data.accessKeyId,
+      secretAccessKey: payload.data.secretAccessKey,
+      type: payload.type.value
     })
     state.headerParams = {
       awsparams: btoa(params)

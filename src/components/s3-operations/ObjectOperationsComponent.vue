@@ -31,6 +31,7 @@
           <list-object-component v-if="operation.value === constants.LIST_OBJECT" />
           <upload-object-component v-if="operation.value === constants.UPLOAD_OBJECT" />
           <get-object-presigned-url-component v-if="operation.value === constants.GENERATE_GET_PRESIGNED_URL" />
+          <delete-object-component v-if="operation.value === constants.DELETE_OBJECT" />
           <put-object-presigned-url-component v-if="operation.value === constants.GENERATE_PUT_PRESIGNED_URL" />
         </q-tab-panel>
       </q-tab-panels>
@@ -48,6 +49,7 @@ import GetObjectComponent from './object/GetObjectComponent.vue';
 import GetObjectPresignedUrlComponent from './object/GetObjectPresignedUrlComponent.vue';
 import PutObjectPresignedUrlComponent from './object/PutObjectPresignedUrlComponent.vue';
 import UploadObjectComponent from './object/UploadObjectComponent.vue';
+import DeleteObjectComponent from './object/DeleteObjectComponent.vue';
 
 export default defineComponent({
   name: 'ObjectOperationsComponent',
@@ -56,7 +58,8 @@ export default defineComponent({
     GetObjectComponent,
     GetObjectPresignedUrlComponent,
     PutObjectPresignedUrlComponent,
-    UploadObjectComponent
+    UploadObjectComponent,
+    DeleteObjectComponent
   },
   setup() {
     return {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-form @submit.prevent="deleteObject">
+    <q-form @submit.prevent="deleteObject" ref="deleteObjectForm">
       <div class="text-left form-data col-lg-12 col-md-12 col-sm-12 col-xs-12 q-py-xs">
         <p class="input-label q-my-xs">Bucket Name
           <span class="text-red">*</span>
@@ -9,7 +9,7 @@
           input-class="text-standout-input"
           standout="bg-accent"
           type="text"
-          v-model="getObjectForm.bucket"
+          v-model="deleteObjectFormParams.bucket"
           placeholder="Bucket Name"
           lazy-rules
           :rules="[
@@ -29,7 +29,7 @@
           input-class="text-standout-input"
           standout="bg-accent"
           type="text"
-          v-model="getObjectForm.key"
+          v-model="deleteObjectFormParams.key"
           placeholder="Object Path"
           lazy-rules
           :rules="[
@@ -58,19 +58,24 @@ export default defineComponent({
   name: 'DeleteObjectComponent',
   setup() {
     return {
-      getObjectForm: ref({
-        bucket: 'pwazabbit',
-        key: 'icons/icon-512x512.png'
+      deleteObjectFormParams: ref({
+        bucket: '',
+        key: ''
       })
     }
   },
   methods: {
     deleteObject() {
       this.$q.loading.show()
-      this.$store.dispatch('s3Store/deleteObject', this.getObjectForm)
+      this.$store.dispatch('s3Store/deleteObject', this.deleteObjectFormParams)
         .then((resp: { message: string }) => {
           this.$q.loading.hide()
-          this.$q.notify({ position: 'bottom', message: resp.message, color: 'positive' })
+          this.$q.notify({ position: 'bottom', message: resp.message, color: 'positive' });
+          this.deleteObjectFormParams = {
+            bucket: '',
+            key: ''
+          };
+          (this.$refs.deleteObjectForm as Vue & { resetValidation: () => boolean }).resetValidation()
         })
         .catch((err: string) => {
           console.log(err)

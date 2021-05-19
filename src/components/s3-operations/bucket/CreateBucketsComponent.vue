@@ -9,7 +9,7 @@
           input-class="text-standout-input"
           standout="bg-accent"
           type="text"
-          v-model="createBucketForm.bucket"
+          v-model="bucketForm.bucket"
           placeholder="Bucket Name"
           lazy-rules
           :rules="[
@@ -29,7 +29,7 @@
           standout="bg-accent"
           input-class="text-standout-input"
           class="text-standout-input"
-          v-model="createBucketForm.acl"
+          v-model="bucketForm.acl"
           :options="aclOptions"
           options-selected-class="text-secondary"
         >
@@ -63,7 +63,7 @@ export default defineComponent({
   name: 'CreateBucketComponent',
   setup() {
     return {
-      createBucketForm: ref({
+      bucketForm: ref({
         bucket: '',
         acl: 'private'
       }),
@@ -78,12 +78,12 @@ export default defineComponent({
   methods: {
     createBucket() {
       this.$q.loading.show()
-      this.$store.dispatch('s3Store/createBucket', this.createBucketForm)
+      this.$store.dispatch('s3Store/createBucket', this.bucketForm)
         .then((resp: { message: string }) => {
           this.$q.loading.hide()
           if (resp)
            this.$q.notify({ position: 'bottom', message: resp.message, color: 'positive' })
-           this.createBucketForm = {
+           this.bucketForm = {
              bucket: '',
              acl: 'private'
            };

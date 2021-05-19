@@ -1,11 +1,14 @@
 export interface S3StateInterface {
   isS3Init: boolean
+  type: { label: string, value: number },
   initParams: {
     region: {
       label: string,
       value: string
     },
-    identityPoolId: string
+    identityPoolId: string,
+    accessKeyId: string,
+    secretAccessKey: string
   },
   headerParams: {
     awsparams: string
@@ -15,6 +18,10 @@ export interface S3StateInterface {
 function state(): S3StateInterface {
   return {
     isS3Init: false,
+    type: {
+      label: 'Cognito Identiy',
+      value: 1
+    },
     headerParams: {
       awsparams: ''
     },
@@ -23,7 +30,9 @@ function state(): S3StateInterface {
         label: '',
         value: ''
       },
-      identityPoolId: ''
+      identityPoolId: '',
+      accessKeyId: '',
+      secretAccessKey: ''
     }
   }
 };

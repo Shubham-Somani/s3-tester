@@ -1,8 +1,8 @@
 {
-  "name": "s3-tester",
-  "version": "0.0.1",
-  "description": "Test your s3 services here",
-  "productName": "S3 Tester",
+  "name": "s3-manager",
+  "version": "0.0.2",
+  "description": "Manage your s3 services on the go",
+  "productName": "S3 Manager",
   "author": "Shubham Somani",
   "private": true,
   "scripts": {
@@ -10,12 +10,6 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@aws-sdk/client-cognito-identity": "^3.14.0",
-    "@aws-sdk/client-s3": "^3.14.0",
-    "@aws-sdk/credential-provider-cognito-identity": "^3.14.0",
-    "@aws-sdk/s3-request-presigner": "^3.14.0",
-    "@aws-sdk/smithy-client": "^3.13.1",
-    "@aws-sdk/types": "^3.13.1",
     "@quasar/extras": "^1.0.0",
     "@vue/composition-api": "^1.0.0-rc.3",
     "axios": "^0.21.1",

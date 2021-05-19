@@ -24,6 +24,7 @@
               input-class="text-standout-input"
               class="text-standout-input"
               v-model="type"
+              @input="modifyType"
               :options="options"
               options-selected-class="text-secondary"
             >
@@ -79,7 +80,7 @@
               </template>
             </q-select>
           </div>
-          <div class="text-left form-data col-lg-12 col-md-12 col-sm-12 col-xs-12 q-py-xs">
+          <div v-if="type.value === 1" class="text-left form-data col-lg-12 col-md-12 col-sm-12 col-xs-12 q-py-xs">
             <p class="input-label q-my-xs">Identity Pool Id
               <span class="text-red">*</span>
             </p>
@@ -95,7 +96,47 @@
               ]"
             >
               <template v-slot:prepend>
-                <q-icon class="text-standout-input" name="email" />
+                <q-icon class="text-standout-input" name="perm_identity" />
+              </template>
+            </q-input>
+          </div>
+          <div v-if="type.value === 2" class="text-left form-data col-lg-12 col-md-12 col-sm-12 col-xs-12 q-py-xs">
+            <p class="input-label q-my-xs">Access Key Id
+              <span class="text-red">*</span>
+            </p>
+            <q-input
+              input-class="text-standout-input"
+              standout="bg-accent"
+              type="text"
+              v-model="congnitoConfig.accessKeyId"
+              placeholder="Access Key Id"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || 'Please enter access key id',
+              ]"
+            >
+              <template v-slot:prepend>
+                <q-icon class="text-standout-input" name="vpn_key" />
+              </template>
+            </q-input>
+          </div>
+          <div v-if="type.value === 2" class="text-left form-data col-lg-12 col-md-12 col-sm-12 col-xs-12 q-py-xs">
+            <p class="input-label q-my-xs">Secret Key
+              <span class="text-red">*</span>
+            </p>
+            <q-input
+              input-class="text-standout-input"
+              standout="bg-accent"
+              type="text"
+              v-model="congnitoConfig.secretAccessKey"
+              placeholder="Secret Key"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || 'Please enter your secret key',
+              ]"
+            >
+              <template v-slot:prepend>
+                <q-icon class="text-standout-input" name="password" />
               </template>
             </q-input>
           </div>
@@ -112,7 +153,7 @@
 <script lang="ts">
 import { defineComponent, ref } from '@vue/composition-api';
 import Regions from 'src/helpers/regions';
-import { Region, S3Config } from 'src/models/model';
+import { Region, S3Config, SelectTag } from 'src/models/model';
 import { mapGetters } from 'vuex';
 
 export default defineComponent({
@@ -125,10 +166,10 @@ export default defineComponent({
           label: 'Cognito Identiy',
           value: 1
         },
-        // {
-        //   label: 'Access Key',
-        //   value: 2
-        // }
+        {
+          label: 'Access Key',
+          value: 2
+        }
       ],
       type: ref({
         label: 'Cognito Identiy',
@@ -139,7 +180,9 @@ export default defineComponent({
           label: '',
           value: '',
         },
-        identityPoolId: ''
+        identityPoolId: '',
+        accessKeyId: '',
+        secretAccessKey: '',
       }),
       regions: ref(Regions),
       regionsFilter: ref(Regions),
@@ -147,13 +190,23 @@ export default defineComponent({
   },
   computed: {
     ...mapGetters({
+      selectedType: 's3Store/getSelectedConfigType',
       congnitoCreds: 's3Store/getS3InitParams'
     })
   },
   created() {
     this.congnitoConfig = { ...this.congnitoCreds } as S3Config
+    this.type = { ...this.selectedType } as { label: string, value: number }
   },
   methods: {
+    modifyType(val: { value: number }) {
+      if (val.value === 1) {
+        this.congnitoConfig.accessKeyId = ''
+        this.congnitoConfig.secretAccessKey = ''
+      } else {
+        this.congnitoConfig.identityPoolId = ''
+      }
+    },
     selectRules (val: Region) {
       if (!val || !val.label) {
         return 'Please Select Region'
@@ -173,7 +226,7 @@ export default defineComponent({
     },
     initialiseS3 () {
       this.$q.loading.show()
-      this.$store.dispatch('s3Store/initialiseS3', { data: this.congnitoConfig })
+      this.$store.dispatch('s3Store/initialiseS3', { data: this.congnitoConfig, type: this.type })
         .then((resp) => {
           this.$q.loading.hide()
           if (resp)
