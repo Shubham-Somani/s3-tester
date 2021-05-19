@@ -153,7 +153,7 @@
 <script lang="ts">
 import { defineComponent, ref } from '@vue/composition-api';
 import Regions from 'src/helpers/regions';
-import { Region, S3Config, SelectTag } from 'src/models/model';
+import { Region, S3Config } from 'src/models/model';
 import { mapGetters } from 'vuex';
 
 export default defineComponent({
